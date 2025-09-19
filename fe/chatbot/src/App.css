@@ -1,0 +1,326 @@
+/* Global box-sizing for easier sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212; /* darker black background */
+  color: #e5e5e5;
+  overflow: hidden;
+}
+
+/* Center the chat area horizontally */
+.chat-area-wrapper {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  padding: 1rem;
+  background-color: #121212; /* same dark background */
+  overflow: hidden;
+}
+
+.app-header {
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-bottom: 1px solid #333;
+  text-align: center;
+  background-color: #343541;
+  flex-shrink: 0; /* prevent shrinking */
+}
+
+/* The chat window with white background and max width */
+.chat-window {
+  background-color: #ffffff; /* dark chat background */
+  color: #e5e5e5;
+  max-width: 720px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7);
+  overflow-y: auto;
+  padding: 1rem;
+  gap: 0.75rem;
+  min-height: 0; /* for flexbox */
+}
+
+.chat-window::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Add a wrapper around chat window to center it */
+.chat-window-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* center horizontally */
+  background-color: #202123; /* black background on sides */
+  padding: 1rem 0; /* vertical padding if needed */
+}
+
+/* Limit chat window max width and keep it responsive */
+.chat-window {
+  max-width: 720px; /* or your preferred max width */
+  width: 100%; /* full width up to max-width */
+  border-radius: 8px; /* optional rounded corners */
+  box-shadow: 0 0 10px rgba(0,0,0,0.5); /* optional subtle shadow */
+}
+
+.chat-message {
+  max-width: 80%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  word-break: break-word; /* prevent overflow on long words */
+}
+
+/* Chat messages styling */
+.chat-message.user {
+  align-self: flex-end;
+  background-color: #3a3a3a;
+  color: #e5e5e5;
+}
+
+.chat-message.bot {
+  align-self: flex-start;
+  background-color: #2a2a2a;
+  color: #e5e5e5;
+  margin-left: 1rem; /* add left spacing */
+  margin-right: auto;
+  max-width: 70%; /* optional: reduce width */
+}
+
+.chat-message.error {
+  align-self: center;
+  background-color: #b91c1c;
+  color: white;
+  font-weight: bold;
+  border: none;
+  box-shadow: none;
+margin-left: 1rem; /* add left spacing */
+  margin-right: auto;
+  max-width: 70%; /* optional: reduce width */
+}
+
+/* Input form styling */
+.input-form {
+  background-color: #1e1e1e;
+  padding: 1rem;
+  border-top: 1px solid #333;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto 1rem auto;
+  border-radius: 0 0 12px 12px;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.input-row {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+/* Input and button styling */
+input[type="text"] {
+  flex-grow: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: #121212;
+  color: #e5e5e5;
+  min-width: 0;
+}
+
+input[type="text"]:disabled {
+  background-color: #2a2a2a;
+}
+
+button {
+  padding: 0 1.5rem;
+  border-radius: 9999px;
+  border: none;
+  background-color: #4f46e5;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+button:disabled {
+  background-color: #6b7280;
+  cursor: not-allowed;
+}
+
+.model-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  flex-wrap: wrap; /* allow wrapping on small screens */
+}
+
+.model-buttons button {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: none;
+  background-color: #202123;
+  color: #9ca3af;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  min-width: 0; /* Allows buttons to shrink properly */
+  white-space: nowrap;
+}
+
+.model-buttons button svg {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.model-buttons button.active {
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: white;
+}
+
+.model-buttons button:disabled {
+  background-color: #2a2a2a;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+
+  .app-container {
+    height: 100vh;
+    max-height: -webkit-fill-available; /* Mobile browser compatibility */
+  }
+
+  .app-header {
+    padding: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .chat-window {
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .chat-message {
+    max-width: 90%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .input-form {
+    padding: 0.75rem;
+  }
+
+  .input-row {
+    gap: 0.5rem;
+  }
+
+  input[type="text"] {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  button {
+    padding: 0 1rem;
+    height: 36px;
+  }
+
+  .model-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .model-buttons button {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.75rem;
+  }
+}
+
+/* Responsive design for very small screens */
+@media (max-width: 480px) {
+  .chat-message {
+    max-width: 95%;
+  }
+
+  input[type="text"] {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  button {
+    padding: 0 0.75rem;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+
+  select {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .chat-window, .input-form {
+    max-width: 100%;
+    border-radius: 0;
+  }
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Spinner */
+.spinner {
+  border: 6px solid #f3f3f3; /* Light grey */
+  border-top: 6px solid #4f46e5; /* Indigo */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+/* Spin animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

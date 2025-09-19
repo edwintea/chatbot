@@ -1,0 +1,12 @@
+Model Ark Guide : https://docs.byteplus.com/en/docs/ModelArk/1099455
+
+
+
+Model Access :
+ByteDance-Seedream-4.0 - Image
+ByteDance-Seed-1.6 - Chat
+ByteDance-Seedance-1.0-pro - Video
+
+
+
+API  key : f0e632b1-a54d-43c0-8b9a-d4ba7de03af8
